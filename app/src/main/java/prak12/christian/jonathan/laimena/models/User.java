@@ -1,34 +1,24 @@
 package prak12.christian.jonathan.laimena.models;
-import java.util.List;
-import java.util.ArrayList;
 
 public class User {
     private String name;
-    List<User> contacts;
+    private ChatRoom chatRoom;
 
     public User(String name) {
         this.name = name;
-        this.contacts = new ArrayList<>();
     }
 
-    public void addContact(User user) {
-        this.contacts.add(user);
-    }
-
-    public void sendMessage(User receiver, String message) {
-        System.out.println("[" + this.name + " -> " + receiver.getName() + "]: " + message);
-        receiver.receiveMessage(this, message);
+    public void send(String message) {
+        if (this.chatRoom != null) {
+            chatRoom.sendBroadcast(this, message);
+        } else {
+            System.out.println(this.name + " belum bisa gabung ke chat roomnya.");
+        }
     }
 
     public void receiveMessage(User sender, String message) {
-        System.out.println("[" + this.name + "] Menerima pesan dari " + sender.getName() + ": " + message);
-    }
-
-    public void sendGroupMessage(String message) {
-        System.out.println("[" + this.name + " mengirim pesan ke grup]: " + message);
-        for (User contact : this.contacts) {
-            contact.receiveMessage(this, message);
-        }
+        System.out.println("[" + this.name + "] Menerima pesan dari " + sender.getName() 
+        + ": " + message);
     }
 
     public String getName() {
@@ -38,4 +28,10 @@ public class User {
         this.name = name;
     }
 
+    public ChatRoom getChatRoom() {
+        return chatRoom;
+    }
+    public void setChatRoom(ChatRoom chatRoom) {
+        this.chatRoom = chatRoom;
+    }
 }

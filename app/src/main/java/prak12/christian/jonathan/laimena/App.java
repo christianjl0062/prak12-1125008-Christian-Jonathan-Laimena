@@ -8,7 +8,29 @@ public class App {
     public static void main(String[] args) {
         User naomi = new User("Naomi");
         User dodo = new User("Dodo");
-        naomi.sendMessage(dodo, "tes tes. Halo Dodo!");
-        dodo.sendMessage(naomi, "Halo Naomi, apa kabar? aku juga tes dulu chatnya di sini.");
+        User andi =  new User("Andi");
+        User fiona =  new User("Fiona");
+
+        naomi.addContact(dodo);
+        naomi.addContact(fiona);
+        naomi.addContact(andi);
+
+        dodo.addContact(andi);
+        dodo.addContact(naomi);
+        dodo.addContact(fiona);
+
+        andi.addContact(dodo);
+        andi.addContact(fiona);
+        andi.addContact(naomi);
+
+        fiona.addContact(andi);
+        fiona.addContact(dodo);
+        fiona.addContact(naomi);
+
+        naomi.sendGroupMessage("tes tes. Halo semuanya di grup chat!");
+        dodo.sendGroupMessage("tes tes. Halo juga!");
+        fiona.sendGroupMessage("Halo semua!");
+        andi.sendGroupMessage("Halo!");
+
     }
 }

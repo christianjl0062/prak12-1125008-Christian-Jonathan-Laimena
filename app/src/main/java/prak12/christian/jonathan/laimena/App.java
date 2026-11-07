@@ -8,6 +8,12 @@ import prak12.christian.jonathan.laimena.models.User;
 public class App {
     public static void main(String[] args) {
         ChatRoom contohChatRoom = new ChatRoom("Contoh Chat Room");
+        contohChatRoom.addBadWord("anjing");
+        contohChatRoom.addBadWord("babi");
+        contohChatRoom.addBadWord("bodoh");
+        contohChatRoom.addBadWord("goblok");
+        contohChatRoom.addBadWord("tolol");
+        contohChatRoom.addBadWord("bangsat");
 
         User naomi = new User("Naomi");
         User dodo = new User("Dodo");
@@ -24,6 +30,6 @@ public class App {
         fiona.send("Halo semua!");
         andi.send("Halo!");
         naomi.sendPrivate("Dodo", "Ini rahasia aja buat kita hehe XD");
-
+        dodo.sendPrivate("Dodo", "biarin aja anjing");
     }
 }

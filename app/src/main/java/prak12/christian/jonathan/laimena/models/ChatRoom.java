@@ -23,10 +23,27 @@ public class ChatRoom {
             }
         }
     }
+
+    public void sendPrivateMessage(User sender, String recipientName, String message) {
+        for (User member : members) {
+            if (member.getName().equals(recipientName)) {
+                member.receiveMessage(sender, message);
+                return;
+            }
+        }
+        System.out.println("User " + recipientName + " tidak ditemukan di room ini.");
+    }
+    
     public String getRoomName() {
         return roomName;
     }
     public void setRoomName(String roomName) {
         this.roomName = roomName;
+    }
+    public List<User> getMembers() {
+        return members;
+    }
+    public void setMembers(List<User> members) {
+        this.members = members;
     }
 }

@@ -23,6 +23,7 @@ public class App {
         dodo.send("tes tes. Halo juga!");
         fiona.send("Halo semua!");
         andi.send("Halo!");
+        naomi.sendPrivate("Dodo", "Ini rahasia aja buat kita hehe XD");
 
     }
 }

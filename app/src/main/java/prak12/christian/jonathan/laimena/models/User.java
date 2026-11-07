@@ -16,6 +16,15 @@ public class User {
         }
     }
 
+    public void sendPrivate(String recipientName, String message) {
+        if (this.chatRoom != null) {
+            System.out.println("[" + this.name + "] Mengirim pesan privat ke " + recipientName + ":");
+            chatRoom.sendPrivateMessage(this, recipientName, message);
+        } else {
+            System.out.println(this.name + " gagal kirim pesan privat karena belum gabung ke room.");
+        }
+    }
+
     public void receiveMessage(User sender, String message) {
         System.out.println("[" + this.name + "] Menerima pesan dari " + sender.getName() 
         + ": " + message);

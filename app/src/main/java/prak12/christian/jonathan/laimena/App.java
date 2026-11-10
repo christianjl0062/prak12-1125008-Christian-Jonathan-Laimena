@@ -30,6 +30,9 @@ public class App {
         fiona.send("Halo semua!");
         andi.send("Halo!");
         naomi.sendPrivate("Dodo", "Ini rahasia aja buat kita hehe XD");
-        dodo.sendPrivate("Dodo", "biarin aja anjing");
+        dodo.sendPrivate("Dodo", "biarin aja bodoh");
+
+        contohChatRoom.removeUser(andi); 
+        andi.send("Halo, apa pesan aku masih ada yang menjawab???? kok pada diem?!");
     }
 }

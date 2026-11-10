@@ -17,6 +17,21 @@ public class ChatRoom {
         user.setChatRoom(this);
     }
 
+    public void removeUser(User user) {
+        if (members.isEmpty()) {
+            System.out.println("Room ini gak ada anggota sama sekali");
+        } else {
+            if (members.contains(user)) {
+                members.remove(user);
+                user.setChatRoom(null);
+                System.out.println("User " + user.getName() + " sudah berhasil dihapus dari room " 
+                + this.roomName);
+            } else {
+                System.out.println("Maaf, user " + user.getName() + " gak ditemukan.");
+            }
+        }
+    }
+
     public void sendBroadcast(User sender, String message) {
         String pesanTerfilter = filterMessage(message);
         for (User member : members) {
@@ -28,13 +43,17 @@ public class ChatRoom {
 
     public void sendPrivateMessage(User sender, String recipientName, String message) {
         String pesanTerfilter = filterMessage(message);
+        boolean userFound = false;
         for (User member : members) {
             if (member.getName().equals(recipientName)) {
-                member.receiveMessage(sender, pesanTerfilter);
-                return;
+                member.receiveMessage(sender, pesanTerfilter);  
+                userFound = true;
             }
         }
-        System.out.println("User " + recipientName + " tidak ditemukan di room ini.");
+        
+        if (userFound == false) {
+            System.out.println("User " + recipientName + " tidak ditemukan di room ini.");
+        }
     }
 
     public void addBadWord(String word) {

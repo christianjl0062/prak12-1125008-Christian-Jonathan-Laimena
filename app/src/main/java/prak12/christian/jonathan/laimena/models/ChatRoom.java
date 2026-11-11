@@ -6,7 +6,7 @@ public class ChatRoom {
     private String roomName;
     private List<User> members;
     private List<String> badwords = new ArrayList<>();
-
+    
     public ChatRoom(String roomName) {
         this.roomName = roomName;
         this.members = new ArrayList<>();

@@ -25,7 +25,6 @@ public class App {
         User andi =  new User("Andi");
         User fiona =  new User("Fiona");
 
-        view.printHeaderChatApp("Pendaftaran User User Ke Chat Room Nya");
         controller.registerUserToRoom(naomi);
         controller.registerUserToRoom(dodo);
         controller.registerUserToRoom(andi);

@@ -17,4 +17,12 @@ public class ChatController {
     public void removeUserFromRoom(User user) {
         chatRoom.removeUser(user);
     }
+
+    public void muteUserInRoom(User user) {
+        chatRoom.muteUser(user);
+    }
+
+    public void showChatHistory() {
+        chatRoom.showHistory();
+    }
 }

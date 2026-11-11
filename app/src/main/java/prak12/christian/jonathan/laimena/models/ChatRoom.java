@@ -6,7 +6,9 @@ public class ChatRoom {
     private String roomName;
     private List<User> members;
     private List<String> badwords = new ArrayList<>();
-    
+    private List<String> mutedUsers = new ArrayList<>();
+    private List<String> chatHistory = new ArrayList<>();
+
     public ChatRoom(String roomName) {
         this.roomName = roomName;
         this.members = new ArrayList<>();
@@ -34,9 +36,17 @@ public class ChatRoom {
 
     public void sendBroadcast(User sender, String message) {
         String pesanTerfilter = filterMessage(message);
-        for (User member : members) {
-            if (member.equals(sender) == false) {
-                member.receiveMessage(sender, pesanTerfilter);
+        String logPesan = sender.getName() + ": " + pesanTerfilter;
+        chatHistory.add(logPesan);
+
+        if (mutedUsers.contains(sender.getName())) {
+            System.out.println("[Mediator]: Pesan dari " + sender.getName() 
+            + " sudah diblokir karena usernya ke mute duluan.");
+        } else {
+            for (User member : members) {
+                if (member.equals(sender) == false) {
+                    member.receiveMessage(sender, pesanTerfilter);
+                }
             }
         }
     }
@@ -66,6 +76,34 @@ public class ChatRoom {
             filteredMessage = filteredMessage.replace(badword, "***");
         }
         return filteredMessage;
+    }
+
+    public void muteUser(User user) {
+        if (mutedUsers.contains(user.getName()) == false) {
+            mutedUsers.add(user.getName());
+            System.out.println("[Mediator]: User " + user.getName() 
+            + " sudah dimute / udah bisu total di room " + roomName + ".");
+        }
+    }
+
+    public void unmuteUser(User user) {
+        mutedUsers.remove(user.getName());
+        System.out.println("[Mediator]: User " + user.getName() + 
+        " berhasil di unmute / gak bisu lagi.");
+    }
+
+    public void showHistory() {
+        System.out.println("========================================");
+        System.out.println("History Chat di Room: " + roomName + "");
+        System.out.println("========================================");
+        if (chatHistory.isEmpty()) {
+            System.out.println("Maaf, ini belum ada history chat nya.");
+        } else {
+            for (String chatAppLog : chatHistory) {
+                System.out.println(chatAppLog);
+            }
+        }
+        System.out.println("========================================");
     }
     
     public String getRoomName() {

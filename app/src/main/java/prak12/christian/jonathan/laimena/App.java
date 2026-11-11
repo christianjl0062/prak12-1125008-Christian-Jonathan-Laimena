@@ -42,5 +42,11 @@ public class App {
         view.printHeaderChatApp("Percobaan buat membuang Andi dari Room Chat");
         controller.removeUserFromRoom(andi);
         andi.send("Halo, apa pesan aku masih ada yang menjawab???? kok pada diem?!");
+
+        view.printHeaderChatApp("Uji apakah Mute User dan Chat History Berhasil? Semoga Berhasil.");
+        controller.muteUserInRoom(dodo);
+        dodo.send("Tadi Andi kok diremove?!");
+        naomi.send("Perasaan kok ada yang di mute???");
+        controller.showChatHistory();
     }
 }
